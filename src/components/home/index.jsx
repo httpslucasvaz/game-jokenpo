@@ -1,5 +1,10 @@
+import { Container } from "./style";
 
 export function Home() {
 
-    return
+    return (
+        <Container>
+            oi
+        </Container>
+    )
 }

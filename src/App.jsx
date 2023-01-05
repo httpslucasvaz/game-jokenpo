@@ -1,9 +1,13 @@
-
+import { Home } from "./components/home";
+import { GlobalStyle } from "./global/styled";
 
 function App() {
-  
-
-  return 
+  return (
+    <>
+      <Home />
+      <GlobalStyle />
+    </>
+  );
 }
 
-export default App
+export default App;

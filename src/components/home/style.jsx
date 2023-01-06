@@ -44,4 +44,6 @@ export const Header = styled.div`
     font-weight: 800;
     font-size: 2rem;
   }
+
+
 `;

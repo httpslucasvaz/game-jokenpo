@@ -72,7 +72,7 @@ export const PlayGame = styled.div`
 `;
 
 export const GameResult = styled.div`
-
+  margin-top: 3rem;
 
   div {
     display: flex;
@@ -80,13 +80,23 @@ export const GameResult = styled.div`
     align-items: center;
 
     span {
-      width: 15rem;
-      height: 15rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 999px;
-      background-color: red;
+      text-align: center;
+    }
+
+    button {
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
     }
   }
-`
+`;
+
+export const Circle = styled.div`
+  width: 15rem;
+  height: 15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 999px;
+  border: solid 10px black;
+`;

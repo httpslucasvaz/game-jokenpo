@@ -1,10 +1,10 @@
-import { Home } from "./components/home";
+import { Game } from "./game";
 import { GlobalStyle } from "./global/styled";
 
 function App() {
   return (
     <>
-      <Home />
+      <Game />
       <GlobalStyle />
     </>
   );

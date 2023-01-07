@@ -15,35 +15,78 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   width: 100%;
+  height: calc(100vh - 7rem);
   max-width: 1080px;
-  margin: 0rem 10rem;
+  margin: 3rem 5rem;
+  flex-direction: column;
+
+  h2 {
+    text-align: center;
+  }
 `;
 
-export const Header = styled.div`
-  width: 100%;
+export const TitleAndScore = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border: 3px solid #989898;
   padding: 1rem;
   border-radius: 10px;
 
   div:nth-child(2) {
-    display: block;
-    width: 10rem;
+    width: 8rem;
     text-align: center;
     background: #fff;
     padding: 0.7rem;
     border-radius: 10px;
 
-    p {
-      font-size: 3.4rem;
+    span {
+      font-size: 2.4rem;
+      font-weight: 600;
     }
   }
 
   p {
-    font-weight: 800;
+    font-weight: 600;
     font-size: 2rem;
+    line-height: 1.6rem;
   }
-
-
 `;
+
+export const PlayGame = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2rem;
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7rem;
+    height: 7rem;
+    cursor: pointer;
+    border-radius: 999px;
+    border: solid 10px black;
+    background-color: #e3e3e3;
+  }
+`;
+
+export const GameResult = styled.div`
+
+
+  div {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    span {
+      width: 15rem;
+      height: 15rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 999px;
+      background-color: red;
+    }
+  }
+`

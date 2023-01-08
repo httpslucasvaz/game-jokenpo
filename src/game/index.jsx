@@ -13,11 +13,13 @@ export function Game() {
   const [selected, setSelected] = useState({
     id: "",
     img: "",
+    color: ""
   });
 
   const [selectedIA, setSelectedIA] = useState({
     id: "",
     img: "",
+    color: ""
   });
 
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -28,14 +30,17 @@ export function Game() {
     {
       id: "1",
       img: "./icon-paper.svg",
+      color: "#81d87c"
     },
     {
       id: "2",
       img: "./icon-rock.svg",
+      color: "#ffabdd"
     },
     {
       id: "3",
       img: "./icon-scissors.svg",
+      color: "#54d2d2"
     },
   ];
 
@@ -61,8 +66,8 @@ export function Game() {
 
   const result = () => {
     if (selectedIA.id === "") {
-      setMessage("")
-    } else if(selected.id === selectedIA.id) {
+      setMessage("");
+    } else if (selected.id === selectedIA.id) {
       setMessage("EMPATE");
     } else if (selected.id === "1" && selectedIA.id === "2") {
       setMessage("VOCÊ GANHOU");
@@ -70,21 +75,23 @@ export function Game() {
       setMessage("VOCÊ GANHOU");
     } else if (selected.id === "3" && selectedIA.id === "1") {
       setMessage("VOCÊ GANHOU");
-    }  else {
+    } else {
       setMessage("VOCÊ PERDEU");
     }
   };
 
   const playAgain = () => {
     setButtonDisabled(false);
-    setMessage("")
+    setMessage("");
     setSelected({
       id: "",
       img: "",
+      color: "",
     });
     setSelectedIA({
       id: "",
       img: "",
+      color: ""
     });
   };
 
@@ -122,25 +129,21 @@ export function Game() {
           })}
         </PlayGame>
         <GameResult>
-          <div>
+          <div> 
             <span>
-              <Circle>
-                {selected ? (
-                  <img src={selected.img} alt="" />
-                ) : (
-                  <p>PEDRA, PAPEL OU TESOURA?</p>
-                )}
+
+          
+            <Circle>
+                <img src={selected.img} alt="" />
               </Circle>
+       
+              
               <h3> VOCÊ </h3>
             </span>
             <h1>VS</h1>
             <span>
               <Circle>
-                {selectedIA ? (
-                  <img src={selectedIA.img} alt="" />
-                ) : (
-                  <p>PEDRA, PAPEL OU TESOURA?</p>
-                )}
+                <img src={selectedIA.img} alt="" />
               </Circle>
               <h3>ADVERSÁRIO </h3>
             </span>

@@ -1,4 +1,3 @@
-import { keyframes } from "styled-components";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -9,8 +8,6 @@ export const Container = styled.div`
   align-items: center;
 
   background-color: #072448;
-  
-  
 `;
 
 export const Wrapper = styled.div`
@@ -19,6 +16,7 @@ export const Wrapper = styled.div`
   max-width: 1080px;
   margin: 3rem 5rem;
   flex-direction: column;
+  transition: all 300ms;
 
   h2 {
     text-align: center;
@@ -153,8 +151,5 @@ export const MessageResult = styled.div`
     color: #e5f0ff;
     font-weight: 600;
     font-size: 1.1rem;
-  } 
+  }
 `;
-
-
-

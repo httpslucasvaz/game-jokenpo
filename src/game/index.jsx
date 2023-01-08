@@ -28,6 +28,8 @@ export function Game() {
 
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
+  const [scores, setScores] = useState(50);
+
   const [message, setMessage] = useState("");
 
   const gameArray = [
@@ -88,26 +90,31 @@ export function Game() {
       setSelected((prevState) => {
         return { ...prevState, resultColor: "#4790F9" };
       });
+      
     } else if (selected.id === "1" && selectedIA.id === "2") {
       setMessage("VOCÊ GANHOU");
       setSelected((prevState) => {
         return { ...prevState, resultColor: "#0AB387" };
       });
+      setScores(() => scores + 5)
     } else if (selected.id === "2" && selectedIA.id === "3") {
       setMessage("VOCÊ GANHOU");
       setSelected((prevState) => {
         return { ...prevState, resultColor: "#0AB387" };
       });
+      setScores(() => scores + 5)
     } else if (selected.id === "3" && selectedIA.id === "1") {
       setMessage("VOCÊ GANHOU");
       setSelected((prevState) => {
         return { ...prevState, resultColor: "#0AB387" };
       });
+      setScores(() => scores + 5)
     } else {
       setMessage("VOCÊ PERDEU");
       setSelected((prevState) => {
         return { ...prevState, resultColor: "#ff6150" };
       });
+      setScores(() => scores - 5)
     }
   };
 
@@ -130,6 +137,8 @@ export function Game() {
     });
   };
 
+  
+
   useEffect(() => {
     result();
   }, [selectedIA]);
@@ -146,7 +155,7 @@ export function Game() {
 
           <div>
             <h4>PONTOS</h4>
-            <span>15</span>
+            <span> {scores} </span>
           </div>
         </TitleAndScore>
 

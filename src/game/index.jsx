@@ -5,22 +5,24 @@ import {
   PlayGame,
   GameResult,
   Circle,
+  MessageResult,
 } from "./style";
 import { useEffect, useState } from "react";
 
 export function Game() {
   const [selected, setSelected] = useState({
     id: "",
-    img: ""
+    img: "",
   });
 
   const [selectedIA, setSelectedIA] = useState({
     id: "",
     img: "",
-
   });
 
-  const [message, setMessage] = useState("VOCÊ");
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
+  const [message, setMessage] = useState("");
 
   const gameArray = [
     {
@@ -49,17 +51,18 @@ export function Game() {
   const getYourOption = (itens) => {
     setSelected({
       id: itens.id,
-      img: itens.img
+      img: itens.img,
     });
 
-    getAdversaryOption()
-    
+    setButtonDisabled(true);
+    getAdversaryOption();
+    setTimeout(playAgain, 2000);
   };
 
- 
-
   const result = () => {
-    if (selected.id === selectedIA.id) {
+    if (selectedIA.id === "") {
+      setMessage("")
+    } else if(selected.id === selectedIA.id) {
       setMessage("EMPATE");
     } else if (selected.id === "1" && selectedIA.id === "2") {
       setMessage("VOCÊ GANHOU");
@@ -67,14 +70,27 @@ export function Game() {
       setMessage("VOCÊ GANHOU");
     } else if (selected.id === "3" && selectedIA.id === "1") {
       setMessage("VOCÊ GANHOU");
-    } else {
+    }  else {
       setMessage("VOCÊ PERDEU");
     }
   };
 
+  const playAgain = () => {
+    setButtonDisabled(false);
+    setMessage("")
+    setSelected({
+      id: "",
+      img: "",
+    });
+    setSelectedIA({
+      id: "",
+      img: "",
+    });
+  };
+
   useEffect(() => {
     result();
-  }, [selectedIA])
+  }, [selectedIA]);
 
   return (
     <Container>
@@ -95,7 +111,11 @@ export function Game() {
         <PlayGame>
           {gameArray.map((item, index) => {
             return (
-              <button key={index} onClick={() => getYourOption(item)}>
+              <button
+                key={index}
+                onClick={() => getYourOption(item)}
+                disabled={buttonDisabled}
+              >
                 <img src={item.img} alt="" />
               </button>
             );
@@ -111,7 +131,7 @@ export function Game() {
                   <p>PEDRA, PAPEL OU TESOURA?</p>
                 )}
               </Circle>
-              <h3> {message} </h3>
+              <h3> VOCÊ </h3>
             </span>
             <h1>VS</h1>
             <span>
@@ -126,6 +146,7 @@ export function Game() {
             </span>
           </div>
         </GameResult>
+        <MessageResult> {message} </MessageResult>
       </Wrapper>
     </Container>
   );

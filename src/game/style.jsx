@@ -1,3 +1,4 @@
+import { keyframes } from "styled-components";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -69,6 +70,10 @@ export const PlayGame = styled.div`
     border: solid 10px black;
     background-color: #e3e3e3;
   }
+
+  button:disabled {
+    cursor: no-drop;
+  }
 `;
 
 export const GameResult = styled.div`
@@ -99,4 +104,8 @@ export const Circle = styled.div`
   align-items: center;
   border-radius: 999px;
   border: solid 10px black;
+`;
+
+export const MessageResult = styled.div`
+  text-align: center;
 `;

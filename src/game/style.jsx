@@ -9,6 +9,8 @@ export const Container = styled.div`
   align-items: center;
 
   background-color: #072448;
+  
+  
 `;
 
 export const Wrapper = styled.div`
@@ -66,7 +68,6 @@ export const PlayGame = styled.div`
     height: 7rem;
     cursor: pointer;
     border-radius: 999px;
-    box-shadow: 5px 5px 20px 2px;
   }
 
   button:nth-child(1) {
@@ -86,6 +87,8 @@ export const PlayGame = styled.div`
 
   button:disabled {
     cursor: no-drop;
+    background-color: #071a30;
+    border: solid 10px transparent;
   }
 `;
 
@@ -105,6 +108,11 @@ export const GameResult = styled.div`
       color: #ffcb00;
     }
 
+    h3 {
+      color: #e5f0ff;
+      margin-top: 1rem;
+    }
+
     button {
       border-radius: 10px;
       font-weight: 600;
@@ -120,9 +128,33 @@ export const Circle = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 999px;
+  border: 15px solid transparent;
   background-color: #071a30;
+
+  img {
+    width: 6rem;
+  }
 `;
 
 export const MessageResult = styled.div`
-  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  div {
+    width: 8rem;
+    height: 2rem;
+    background-color: #4790f9;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e5f0ff;
+    font-weight: 600;
+    font-size: 1.1rem;
+  } 
 `;
+
+
+

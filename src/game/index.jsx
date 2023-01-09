@@ -6,6 +6,7 @@ import {
   GameResult,
   Circle,
   MessageResult,
+  Done,
 } from "./style";
 import { useEffect, useState } from "react";
 
@@ -28,9 +29,15 @@ export function Game() {
 
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
-  const [scores, setScores] = useState(50);
+  const [scores, setScores] = useState({
+    currentScore: 50,
+    bgFinalColor: "",
+    message: "",
+  });
 
   const [message, setMessage] = useState("");
+
+  
 
   const gameArray = [
     {
@@ -79,43 +86,7 @@ export function Game() {
 
     setButtonDisabled(true);
     getAdversaryOption();
-    setTimeout(playAgain, 2000);
-  };
-
-  const result = () => {
-    if (selectedIA.id === "") {
-      setMessage("");
-    } else if (selected.id === selectedIA.id) {
-      setMessage("EMPATE");
-      setSelected((prevState) => {
-        return { ...prevState, resultColor: "#4790F9" };
-      });
-      
-    } else if (selected.id === "1" && selectedIA.id === "2") {
-      setMessage("VOCÊ GANHOU");
-      setSelected((prevState) => {
-        return { ...prevState, resultColor: "#0AB387" };
-      });
-      setScores(() => scores + 5)
-    } else if (selected.id === "2" && selectedIA.id === "3") {
-      setMessage("VOCÊ GANHOU");
-      setSelected((prevState) => {
-        return { ...prevState, resultColor: "#0AB387" };
-      });
-      setScores(() => scores + 5)
-    } else if (selected.id === "3" && selectedIA.id === "1") {
-      setMessage("VOCÊ GANHOU");
-      setSelected((prevState) => {
-        return { ...prevState, resultColor: "#0AB387" };
-      });
-      setScores(() => scores + 5)
-    } else {
-      setMessage("VOCÊ PERDEU");
-      setSelected((prevState) => {
-        return { ...prevState, resultColor: "#ff6150" };
-      });
-      setScores(() => scores - 5)
-    }
+    setTimeout(playAgain, 1300);
   };
 
   const playAgain = () => {
@@ -137,26 +108,110 @@ export function Game() {
     });
   };
 
-  
+  const result = () => {
+    if (selectedIA.id === "") {
+      setMessage("");
+    } else if (selected.id === selectedIA.id) {
+      setMessage("EMPATE");
+      setSelected((prevState) => {
+        return { ...prevState, resultColor: "#4790F9" };
+      });
+    } else if (selected.id === "1" && selectedIA.id === "2") {
+      setMessage("VOCÊ GANHOU");
+      setSelected((prevState) => {
+        return { ...prevState, resultColor: "#0AB387" };
+      });
+      setScores((prevState) => {
+        return { ...prevState, currentScore: scores.currentScore + 25 };
+      });
+    } else if (selected.id === "2" && selectedIA.id === "3") {
+      setMessage("VOCÊ GANHOU");
+      setSelected((prevState) => {
+        return { ...prevState, resultColor: "#0AB387" };
+      });
+      setScores((prevState) => {
+        return { ...prevState, currentScore: scores.currentScore + 25 };
+      });
+    } else if (selected.id === "3" && selectedIA.id === "1") {
+      setMessage("VOCÊ GANHOU");
+      setSelected((prevState) => {
+        return { ...prevState, resultColor: "#0AB387" };
+      });
+      setScores((prevState) => {
+        return { ...prevState, currentScore: scores.currentScore + 25 };
+      });
+    } else {
+      setMessage("VOCÊ PERDEU");
+      setSelected((prevState) => {
+        return { ...prevState, resultColor: "#ff6150" };
+      });
+      setScores((prevState) => {
+        return { ...prevState, currentScore: scores.currentScore - 25 };
+      });
+    }
+  };
+
+  const gameDone = () => {
+    if (scores.currentScore <= 0) {
+      setScores((prevState) => {
+        return {
+          ...prevState,
+          bgFinalColor: "#ff6150",
+          message: "VOCÊ PERDEU A BATALHA :/",
+        };
+      });
+    } else if (scores.currentScore >= 100) {
+      setScores((prevState) => {
+        return {
+          ...prevState,
+          bgFinalColor: "#0AB387",
+          message: "PARABÉNS, VOCÊ GANHOU!",
+        };
+      });
+    }
+  };
 
   useEffect(() => {
     result();
   }, [selectedIA]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (scores.currentScore <= 0 || scores.currentScore >= 100) {
+        setScores((prevState) => {
+          return { ...prevState, currentScore: 50 };
+        });
+      }
+    }, 1300);
+    gameDone();
+  }, [scores.currentScore]);
+
   return (
     <Container>
       <Wrapper>
         <TitleAndScore>
-          <div>
-            <p>PEDRA</p>
-            <p>PAPEL</p>
-            <p>TESOURA</p>
-          </div>
+          {scores.currentScore <= 0 || scores.currentScore >= 100 ? (
+            <Done
+              style={{
+                backgroundColor: `${scores.bgFinalColor}`,
+              }}
+            >
+              {scores.message}
+            </Done>
+          ) : (
+            <>
+              <div>
+                <p>PEDRA</p>
+                <p>PAPEL</p>
+                <p>TESOURA</p>
+              </div>
 
-          <div>
-            <h4>PONTOS</h4>
-            <span> {scores} </span>
-          </div>
+              <div>
+                <h4>PONTOS</h4>
+                <span> {scores.currentScore} </span>
+              </div>
+            </>
+          )}
         </TitleAndScore>
 
         <PlayGame>
@@ -202,13 +257,11 @@ export function Game() {
         </GameResult>
         {message.length > 0 && (
           <MessageResult>
-            {" "}
             <div
               style={{
                 backgroundColor: `${selected.resultColor}`,
               }}
             >
-              {" "}
               {message}
             </div>
           </MessageResult>

@@ -25,6 +25,7 @@ export const Wrapper = styled.div`
 
 export const TitleAndScore = styled.div`
   display: flex;
+  height: 5rem;
   justify-content: space-between;
   align-items: center;
   border: 3px solid #e5f0ff;
@@ -153,3 +154,15 @@ export const MessageResult = styled.div`
     font-size: 1.1rem;
   }
 `;
+
+export const Done = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  color: #e5f0ff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-radius: 10px;
+`

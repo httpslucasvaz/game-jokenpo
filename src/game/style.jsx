@@ -67,6 +67,15 @@ export const PlayGame = styled.div`
     height: 7rem;
     cursor: pointer;
     border-radius: 999px;
+
+    @media (max-width: 832px) {
+      width: 5rem;
+      height: 5rem;
+
+      img {
+        width: 2rem;
+      }
+    }
   }
 
   button:nth-child(1) {
@@ -103,8 +112,12 @@ export const GameResult = styled.div`
       text-align: center;
     }
 
-    h1 {
+    h4 {
       color: #ffcb00;
+
+      @media (max-width: 832px) {
+        margin: 0 0.7rem;  
+  }
     }
 
     h3 {
@@ -130,8 +143,17 @@ export const Circle = styled.div`
   border: 15px solid transparent;
   background-color: #071a30;
 
+  @media (max-width: 832px) {
+    width: 8rem;
+    height: 8rem;
+  }
+
   img {
     width: 6rem;
+
+    @media (max-width: 832px) {
+      width: 3rem;
+    }
   }
 `;
 
@@ -143,15 +165,16 @@ export const MessageResult = styled.div`
   div {
     width: 8rem;
     height: 2rem;
-    background-color: #4790f9;
-    padding: 1rem 2rem;
-    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #4790f9;
+    padding: 1rem 2rem;
+    border-radius: 10px;
     color: #e5f0ff;
     font-weight: 600;
     font-size: 1.1rem;
+    margin-top: 2rem ;
   }
 `;
 
@@ -165,4 +188,4 @@ export const Done = styled.div`
   font-size: 1.3rem;
   font-weight: 700;
   border-radius: 10px;
-`
+`;

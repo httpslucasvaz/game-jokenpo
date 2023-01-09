@@ -37,7 +37,7 @@ export function Game() {
 
   const [message, setMessage] = useState("");
 
-  
+
 
   const gameArray = [
     {
@@ -241,7 +241,7 @@ export function Game() {
 
               <h3> VOCÊ </h3>
             </span>
-            <h1>VS</h1>
+            <h4>VS</h4>
             <span>
               <Circle
                 style={{

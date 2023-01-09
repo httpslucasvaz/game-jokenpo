@@ -1,5 +1,5 @@
 
-# JOKENPO
+# JOKENPÔ
 
 O famoso jogo Pedra, Papel e Tesoura.
 
